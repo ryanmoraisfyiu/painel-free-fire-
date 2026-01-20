@@ -60,9 +60,11 @@ function App() {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // ID do vídeo do Vimeo conforme solicitado
+  // Links de Checkout Configurados
   const VIMEO_VIDEO_ID = "1154491028"; 
-  const CHECKOUT_BASIC = "https://pay.sunize.com.br/WQuMtwwr";
+  const CHECKOUT_BASIC = "https://pay.sunize.com.br/WQuMtwwr";     // R$ 9,90 (Link de recusa)
+  const CHECKOUT_PREMIUM = "https://pay.sunize.com.br/bATaKhuX";   // R$ 19,90 (Link direto)
+  const CHECKOUT_UPGRADE = "https://pay.sunize.com.br/bIAmBkvM";   // R$ 13,90 (Promoção no modal)
 
   const scrollToCheckout = () => {
     const section = document.getElementById('checkout');
@@ -77,13 +79,13 @@ function App() {
 
   const handleCloseModal = () => {
     setShowUpgradeModal(false);
-    // Redirect to basic checkout when they refuse the upgrade
+    // Redireciona para o checkout Básico (R$ 9,90) ao recusar
     window.location.href = CHECKOUT_BASIC;
   };
 
   const handleAcceptUpgrade = () => {
-    alert("Redirecionando para checkout Premium com Desconto (R$ 13,90)...");
-    setShowUpgradeModal(false);
+    // Redireciona para o checkout da Promoção (R$ 13,90) ao aceitar
+    window.location.href = CHECKOUT_UPGRADE;
   };
 
   return (
@@ -494,7 +496,7 @@ function App() {
                   subtext="Acesso Imediato + Bônus Exclusivos"
                   fullWidth={true}
                   className="!py-4 !text-xl"
-                  onClick={() => alert("Checkout Plano Premium")}
+                  onClick={() => window.location.href = CHECKOUT_PREMIUM}
                 />
               </div>
 
